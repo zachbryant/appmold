@@ -27,8 +27,12 @@ fi
 
 if [[ $CLIENT ]]; then
     git clone --recursive $CLIENT ./client
+    rm -rf ./client/.git
+    git add ./client
 fi
 
 if [[ $SERVER ]]; then
     git clone --recursive $SERVER ./server
+    rm -rf ./server/.git
+    git add ./server
 fi
