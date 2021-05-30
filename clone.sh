@@ -29,10 +29,14 @@ if [[ $CLIENT ]]; then
     git clone --recursive $CLIENT ./client
     cd ./client
     git remote add template-upstream $CLIENT
+    cd ..
+    git add ./client
 fi
 
 if [[ $SERVER ]]; then
     git clone --recursive $SERVER ./server
     cd ./server
     git remote add template-upstream $SERVER
+    cd ..
+    git add ./server
 fi

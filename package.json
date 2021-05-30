@@ -1,11 +1,10 @@
 {
     "name": "appmold",
-    "version": "0.0.1",
-    "main": "index.js",
+    "version": "0.0.2",
     "homepage": "https://github.com/zachbryant/appmold",
     "license": "MIT",
     "scripts": {
-        "start": "concurrently \"npm:start:server\" \"npm:start:client\"",
+        "start": "concurrently \"npm:start:server\" \"npm:start:client\"  --kill-others --raw",
         "clean": "concurrently \"npm:clean:main\" \"npm:clean:server\" \"npm:clean:client\"",
         "start:client": "cd client && npm run start",
         "start:server": "cd server && npm run start",
