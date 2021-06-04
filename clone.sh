@@ -26,7 +26,7 @@ if [[ ! $CLIENT ]] && [[ ! $SERVER ]]; then
 fi
 
 if [[ $CLIENT ]]; then
-    git clone --recursive $CLIENT ./client
+    git submodule add $CLIENT ./client
     cd ./client
     git remote add template-upstream $CLIENT
     cd ..
@@ -34,7 +34,7 @@ if [[ $CLIENT ]]; then
 fi
 
 if [[ $SERVER ]]; then
-    git clone --recursive $SERVER ./server
+    git submodule add $SERVER ./server
     cd ./server
     git remote add template-upstream $SERVER
     cd ..
