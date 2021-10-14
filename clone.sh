@@ -25,10 +25,13 @@ if [[ ! $CLIENT ]] && [[ ! $SERVER ]]; then
 	exit 1
 fi
 
+TEMPLATE_REMOTE_NAME="template-upstream"
+git remote add $TEMPLATE_REMOTE_NAME git@github.com:zachbryant/appmold.git
+
 if [[ $CLIENT ]]; then
     git submodule add $CLIENT ./client
     cd ./client
-    git remote add template-upstream $CLIENT
+    git remote add $TEMPLATE_REMOTE_NAME $CLIENT
     cd ..
     git add ./client
 fi
@@ -36,7 +39,7 @@ fi
 if [[ $SERVER ]]; then
     git submodule add $SERVER ./server
     cd ./server
-    git remote add template-upstream $SERVER
+    git remote add $TEMPLATE_REMOTE_NAME $SERVER
     cd ..
     git add ./server
 fi
