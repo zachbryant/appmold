@@ -1,45 +1,19 @@
 #!/bin/bash
 
-USAGE="Usage: ./clone.sh [-s|--server]=... [-c|--client]=..."
+USAGE="Usage: ./clone.sh <git url>"
 
-for i in "$@"; do
-case $i in
-    -s=*|--server=*)
-    SERVER="${i#*=}"
-    shift # past argument=value
-    ;;
-    -c=*|--client=*)
-    CLIENT="${i#*=}"
-    shift # past argument=value
-    ;;
-    *)
-          # unknown option
-	  echo $USAGE
-	  exit 1
-    ;;
-esac
-done
+REPO_URL="$1"
 
-if [[ ! $CLIENT ]] && [[ ! $SERVER ]]; then
+if [[ ! $REPO_URL ]]; then
 	echo $USAGE
 	exit 1
 fi
 
 TEMPLATE_REMOTE_NAME="template-upstream"
-git remote add $TEMPLATE_REMOTE_NAME git@github.com:zachbryant/appmold.git
+APPMOLD_TEMPLATE_REMOTE_NAME="template-upstream-appmold"
 
-if [[ $CLIENT ]]; then
-    git submodule add $CLIENT ./client
-    cd ./client
-    git remote add $TEMPLATE_REMOTE_NAME $CLIENT
-    cd ..
-    git add ./client
-fi
+git remote add $TEMPLATE_REMOTE_NAME $REPO_URL
+git remote add $APPMOLD_TEMPLATE_REMOTE_NAME git@github.com:zachbryant/appmold.git
+git clone $REPO_URL .
 
-if [[ $SERVER ]]; then
-    git submodule add $SERVER ./server
-    cd ./server
-    git remote add $TEMPLATE_REMOTE_NAME $SERVER
-    cd ..
-    git add ./server
-fi
+echo "If you cloned manually, run: git remote set-url origin <new url>"
