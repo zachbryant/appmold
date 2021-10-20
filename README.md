@@ -4,7 +4,7 @@ This project provides a quick way to get running with template projects. It's pu
 
 ## How to use
 Clone this repository (you can use the `use this template` button) and then you have two scripts:
- * `./clone.sh <git url> [dirname]`: will set up the repo using your desired template code.
+ * `./clone.sh <git url>`: will set up the repo using your desired template code.
  * `./update.sh`: will create a new branch for you to reconcile your edits with the templates' edits.
 
 ## A note
